@@ -16,13 +16,11 @@ app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB max upload
 
 CORS(
     app,
-    resources={
-        r"/*": {
-            "origins": [
-                "https://face-mask-recognition-frontend.vercel.app"
-            ]
-        }
-    },
+    resources={r"/*": {
+        "origins": [
+            "https://face-mask-recognition-frontend.vercel.app"
+        ]
+    }},
     methods=["GET", "POST", "OPTIONS"],
     allow_headers=["Content-Type"]
 )
