@@ -2,6 +2,7 @@ import io
 from pathlib import Path
 from flask import Flask, jsonify, request
 from PIL import Image, UnidentifiedImageError
+from flask_cors import CORS
 
 from model_engine import MaskClassifier
 
@@ -12,6 +13,10 @@ if not MODEL_PATH.exists():
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB max upload
+
+CORS(app, origins=[
+    "https://face-mask-recognition-f-git-549bc7-prashantkumar-dev1s-projects.vercel.app"
+])
 
 classifier = MaskClassifier(MODEL_PATH)
 
