@@ -14,10 +14,18 @@ if not MODEL_PATH.exists():
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = 10 * 1024 * 1024  # 10 MB max upload
 
-CORS(app, origins=[
-    "https://face-mask-recognition-f-git-549bc7-prashantkumar-dev1s-projects.vercel.app"
-])
-
+CORS(
+    app,
+    resources={
+        r"/*": {
+            "origins": [
+                "https://face-mask-recognition-frontend.vercel.app"
+            ]
+        }
+    },
+    methods=["GET", "POST", "OPTIONS"],
+    allow_headers=["Content-Type"]
+)
 classifier = MaskClassifier(MODEL_PATH)
 
 
